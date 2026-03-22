@@ -33,7 +33,7 @@ const TestSolver = dynamic(
   { ssr: false }
 )
 const TestCreateForm = dynamic(
-  () => import('@/components/test/TestCreateForm').then(mod => ({ default: mod.TestCreateForm })), 
+  () => import('@/components/test-creator/TestCreateForm').then(mod => ({ default: mod.TestCreateForm })), 
   { ssr: false }
 )
 
