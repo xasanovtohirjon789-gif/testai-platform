@@ -49,6 +49,8 @@ HECH QANDAY QO'SHIMCHA MATN YO'Q! FAQAT JSON!`
 
     const userPrompt = `${topic} mavzusida ${questionCount} ta test savoli yarating.
 
+MUHIM: ANIQ ${questionCount} TA SAVOL BO'LISHI KERAK! Ko'p ham, oz ham emas!
+
 DIQQAT: Savollar ${topic} HAQIDA emas, ${topic} BO'YICHA bo'lishi kerak!
 
 Masalan:
@@ -56,7 +58,7 @@ Masalan:
 - "Matematika" deb yozilgan bo'lsa, matematika masalalar va tenglamalar
 - "Fizika" deb yozilgan bo'lsa, fizika qonunlar va formulalar
 
-${topic} mavzusida ${questionCount} ta konkret, o'quvchi tushunadigan savol yarat!`
+${topic} mavzusida ANIQ ${questionCount} ta konkret, o'quvchi tushunadigan savol yarat!`
 
     const completion = await zai.chat.completions.create({
       messages: [
@@ -64,14 +66,14 @@ ${topic} mavzusida ${questionCount} ta konkret, o'quvchi tushunadigan savol yara
         { role: 'user', content: userPrompt }
       ],
       temperature: 0.7,
-      max_tokens: 16000,
+      max_tokens: 32000, // Increased for 50+ questions
     })
 
     const content = completion.choices[0]?.message?.content || ''
     console.log('[AI Response]', content.substring(0, 500))
 
     // Parse questions
-    const questions = parseAIResponse(content, topic, questionCount)
+    let questions = parseAIResponse(content, topic, questionCount)
     
     // Check if questions are generic (fallback)
     const isGeneric = questions.some(q => 
@@ -87,14 +89,26 @@ ${topic} mavzusida ${questionCount} ta konkret, o'quvchi tushunadigan savol yara
       q.question.includes('sohasida karyera qilish uchun')
     )
 
-    if (isGeneric) {
-      console.log('[AI] Generic questions detected, using topic-specific fallback')
-      const topicQuestions = generateTopicQuestions(topic, questionCount)
+    // If questions are generic or not enough, use topic-specific fallback
+    if (isGeneric || questions.length < questionCount) {
+      console.log(`[AI] ${isGeneric ? 'Generic questions' : 'Not enough questions'} detected, using fallback. AI: ${questions.length}, Requested: ${questionCount}`)
+      
+      // If AI generated some valid non-generic questions, keep them and fill the rest
+      const validAiQuestions = isGeneric ? [] : questions
+      const neededCount = questionCount - validAiQuestions.length
+      
+      if (neededCount > 0) {
+        const fallbackQuestions = generateTopicQuestions(topic, neededCount)
+        questions = [...validAiQuestions, ...fallbackQuestions]
+      } else {
+        questions = validAiQuestions.slice(0, questionCount)
+      }
+      
       return NextResponse.json({ 
-        questions: topicQuestions,
-        generated: questionCount,
+        questions,
+        generated: questions.length,
         requested: questionCount,
-        source: 'topic-specific-fallback'
+        source: isGeneric ? 'topic-specific-fallback' : 'ai-with-fallback'
       })
     }
 
