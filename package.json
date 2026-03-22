@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000 2>&1 | tee dev.log",
-    "build": "prisma generate && next build",
+    "build": "npx prisma generate --schema=./prisma/schema.prisma && next build",
     "start": "NODE_ENV=production bun .next/standalone/server.js 2>&1 | tee server.log",
     "lint": "eslint .",
-    "postinstall": "prisma generate || echo 'Prisma generation skipped'",
+    "postinstall": "npx prisma generate --schema=./prisma/schema.prisma || echo 'Prisma generation skipped'",
     "db:push": "bunx prisma db push",
     "db:generate": "bunx prisma generate",
     "db:migrate": "bunx prisma migrate dev",
