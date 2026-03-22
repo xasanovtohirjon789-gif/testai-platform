@@ -64,7 +64,7 @@ ${topic} mavzusida ${questionCount} ta konkret, o'quvchi tushunadigan savol yara
         { role: 'user', content: userPrompt }
       ],
       temperature: 0.7,
-      max_tokens: 8000,
+      max_tokens: 16000,
     })
 
     const content = completion.choices[0]?.message?.content || ''
@@ -701,6 +701,176 @@ function generateInformatikaQuestions(topic: string, count: number) {
       question: `Parol (password) nima uchun kerak?`,
       options: ['O\'yin o\'ynash uchun', 'Hisobni himoya qilish uchun', 'Rasm saqlash uchun', 'Musiqa tinglash uchun'],
       correct: 1
+    },
+    {
+      question: `RAM (operativ xotira) nima vazifani bajaradi?`,
+      options: ['Fayllarni doimiy saqlash', 'Vaqtincha ma\'lumotlarni saqlash', 'Rasm ko\'rsatish', 'Ovoz chiqarish'],
+      correct: 1
+    },
+    {
+      question: `Qattiq disk (HDD) nima?`,
+      options: ['Protsessor', 'Doimiy ma\'lumot saqlash qurilmasi', 'Xotira kartasi', 'USB fleshka'],
+      correct: 1
+    },
+    {
+      question: `Monitor qanday qurilma?`,
+      options: ['Ma\'lumot kiritish qurilmasi', 'Ma\'lumot chiqarish qurilmasi', 'Saqlash qurilmasi', 'Hisoblash qurilmasi'],
+      correct: 1
+    },
+    {
+      question: `Klaviatura qanday qurilma?`,
+      options: ['Ma\'lumot chiqarish', 'Ma\'lumot kiritish', 'Ma\'lumot saqlash', 'Ma\'lumot o\'chirish'],
+      correct: 1
+    },
+    {
+      question: `Sichqoncha (mouse) nima uchun ishlatiladi?`,
+      options: ['Matn kiritish', 'Kursor boshqarish', 'Rasm saqlash', 'Ovoz yozish'],
+      correct: 1
+    },
+    {
+      question: `Printer nima qiladi?`,
+      options: ['Rasmni qog\'ozga chop etadi', 'Rasmni skanerlaydi', 'Ovoz yozib oladi', 'Video ko\'rsatadi'],
+      correct: 0
+    },
+    {
+      question: `USB fleshka nima?`,
+      options: ['Protsessor', 'Portativ saqlash qurilmasi', 'Xotira', 'Monitor'],
+      correct: 1
+    },
+    {
+      question: `Operatsion tizimlarga qaysi dasturlar kiradi?`,
+      options: ['MS Word', 'Windows, Linux', 'Photoshop', 'Chrome'],
+      correct: 1
+    },
+    {
+      question: `Brauzer nima?`,
+      options: ['O\'yin dasturi', 'Internetda saytlarni ko\'rish dasturi', 'Matn muharriri', 'Antivirus'],
+      correct: 1
+    },
+    {
+      question: `Google Chrome qanday dastur?`,
+      options: ['Matn muharriri', 'Veb-brauzer', 'Operatsion tizim', 'Antivirus'],
+      correct: 1
+    },
+    {
+      question: `Fayl kengaytmasi nima?`,
+      options: ['Fayl nomi', 'Fayl turini ko\'rsatuvchi qo\'shimcha', 'Fayl hajmi', 'Fayl sanasi'],
+      correct: 1
+    },
+    {
+      question: `.docx fayl qaysi dasturda ochiladi?`,
+      options: ['Excel', 'Word', 'PowerPoint', 'Paint'],
+      correct: 1
+    },
+    {
+      question: `.xlsx fayl qaysi dasturda ochiladi?`,
+      options: ['Word', 'Excel', 'PowerPoint', 'Notepad'],
+      correct: 1
+    },
+    {
+      question: `.pptx fayl qaysi dasturda ochiladi?`,
+      options: ['Word', 'Excel', 'PowerPoint', 'Paint'],
+      correct: 2
+    },
+    {
+      question: `PowerPoint nima uchun ishlatiladi?`,
+      options: ['Matn yozish', 'Taqdimot yaratish', 'Hisob-kitob', 'Rasm chizish'],
+      correct: 1
+    },
+    {
+      question: `Antivirus dasturi nima uchun kerak?`,
+      options: ['O\'yin o\'ynash', 'Kompyuterni viruslardan himoya qilish', 'Internetga chiqish', 'Rasm tahrirlash'],
+      correct: 1
+    },
+    {
+      question: `Wi-Fi nima?`,
+      options: ['Protsessor turi', 'Simsiz internet tarmog\'i', 'Xotira turi', 'Monitor turi'],
+      correct: 1
+    },
+    {
+      question: `IP manzil nima?`,
+      options: ['Kompyuter nomi', 'Kompyuterning tarmoqdagi manzili', 'Fayl nomi', 'Dastur nomi'],
+      correct: 1
+    },
+    {
+      question: `Bayt nima?`,
+      options: ['Axborot birligi', 'Vaqt birligi', 'Uzunlik birligi', 'Og\'irlik birligi'],
+      correct: 0
+    },
+    {
+      question: `1 megabayt necha kilobaytga teng?`,
+      options: ['100 KB', '1000 KB', '1024 KB', '2048 KB'],
+      correct: 2
+    },
+    {
+      question: `Binar (ikkilik) sanoq sistemasi qanday raqamlardan iborat?`,
+      options: ['0 va 1', '1 va 2', '0 dan 9 gacha', 'A dan Z gacha'],
+      correct: 0
+    },
+    {
+      question: `Dasturlash tili nima?`,
+      options: ['Inson tili', 'Kompyuter bilan muloqot tili', 'Xorijiy til', 'Ishora tili'],
+      correct: 1
+    },
+    {
+      question: `Python qanday til?`,
+      options: ['Ingliz tili', 'Dasturlash tili', 'Rus tili', 'Ispan tili'],
+      correct: 1
+    },
+    {
+      question: `Scratch nima?`,
+      options: ['O\'yin', 'Bolalar uchun dasturlash muhiti', 'Rasmlash dasturi', 'Musiqiy dastur'],
+      correct: 1
+    },
+    {
+      question: `Dastur nima?`,
+      options: ['Kompyuter qismi', 'Kompyuter uchun ko\'rsatmalar to\'plami', 'Monitor', 'Klaviatura'],
+      correct: 1
+    },
+    {
+      question: `Tarmoq nima?`,
+      options: ['Bir kompyuter', 'Bog\'langan kompyuterlar guruhi', 'Protsessor', 'Xotira'],
+      correct: 1
+    },
+    {
+      question: `Server nima?`,
+      options: ['Oddiy kompyuter', 'Tarmoqda xizmat ko\'rsatuvchi kompyuter', 'Monitor', 'Klaviatura'],
+      correct: 1
+    },
+    {
+      question: `Cloud (bulut) texnologiyasi nima?`,
+      options: ['Ob-havo bashorati', 'Internet orqali ma\'lumot saqlash', 'Yangi protsessor', 'Dastur turi'],
+      correct: 1
+    },
+    {
+      question: `Backup (zaxira nusxa) nima uchun kerak?`,
+      options: ['O\'yin o\'ynash', 'Ma\'lumotlarni saqlab qolish', 'Internetga chiqish', 'Rasm tahrirlash'],
+      correct: 1
+    },
+    {
+      question: `Copy (nusxa olish) qaysi tugma birikmasi bilan amalga oshiriladi?`,
+      options: ['Ctrl + V', 'Ctrl + C', 'Ctrl + X', 'Ctrl + Z'],
+      correct: 1
+    },
+    {
+      question: `Paste (joylashtirish) qaysi tugma birikmasi bilan amalga oshiriladi?`,
+      options: ['Ctrl + C', 'Ctrl + V', 'Ctrl + X', 'Ctrl + Z'],
+      correct: 1
+    },
+    {
+      question: `Undo (bekor qilish) qaysi tugma birikmasi bilan amalga oshiriladi?`,
+      options: ['Ctrl + C', 'Ctrl + V', 'Ctrl + Z', 'Ctrl + X'],
+      correct: 2
+    },
+    {
+      question: `Ctrl + S qaysi amalni bajaradi?`,
+      options: ['Nusxa olish', 'Saqlash', 'Joylashtirish', 'O\'chirish'],
+      correct: 1
+    },
+    {
+      question: `Haker kim?`,
+      options: ['Dasturchi', 'Kompyuter tizimlariga noqonuniy kiruvchi shaxs', 'O\'qituvchi', 'Dizayner'],
+      correct: 1
     }
   ]
   
@@ -954,6 +1124,11 @@ function generateSpecificQuestions(topic: string, count: number) {
 function shuffleAndTake(questions: any[], count: number) {
   // Shuffle the questions
   const shuffled = [...questions].sort(() => Math.random() - 0.5)
-  // Take the requested number
-  return shuffled.slice(0, count).map((q, i) => ({ ...q, id: `q_${i}` }))
+  // If not enough questions, repeat them
+  const result = []
+  for (let i = 0; i < count; i++) {
+    const q = shuffled[i % shuffled.length]
+    result.push({ ...q, id: `q_${i}` })
+  }
+  return result
 }
