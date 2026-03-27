@@ -1,0 +1,11 @@
+[build]
+  command = "bun install && bun run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  BUN_VERSION = "latest"
+  DATABASE_URL = "postgresql://postgres:dummy@localhost:5432/postgres"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
